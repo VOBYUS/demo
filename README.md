@@ -2,11 +2,11 @@
 This code is based on https://github.com/aiortc/aiortc.
 
 ## Setup
-- Selectively incorporate aiortc code in our repository `JK`
+- Selectively incorporate aiortc code in our repository `BT`
 - Selectively incorporate VobyCam code in our repository `SK`
 
 ## Frontend
-- Design website `BT`
+- Design website `JK`
 - A website to demo our drowsiness detection
 
 ## Backend
