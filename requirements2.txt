@@ -1,0 +1,9 @@
+opencv-python
+tensorflow==1.14
+scipy
+imutils
+CMake
+dlib
+matplotlib
+scikit-learn==0.19.2
+
