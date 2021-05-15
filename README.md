@@ -1,15 +1,14 @@
 # Demo
 This code is based on https://github.com/aiortc/aiortc.
 
-## Setup
-- Selectively incorporate aiortc code in our repository `JK`
-- Selectively incorporate VobyCam code in our repository `SK`
 
 ## Frontend
-- Design website `BT`
+- base css and upload to github, increase font size and change font, by thursday `JK`
+- add buttons for website `BT`
 - A website to demo our drowsiness detection
 
 ## Backend
+- move code from blinkvideo.py to aiortc server -`SK`
 - Use aiortc to send video to videofiletodemo.py
 - Real-time drowsiness detection
 - Send drowsiness detection result to webpage
