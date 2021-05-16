@@ -33,3 +33,7 @@ This code is based on https://github.com/aiortc/aiortc.
 - follow Mr Lera's read me to move aiortc to Nano `MK`
 - delete all of the json files 
 
+### Action Items for class 5/22
+- add front end stuff by wednesday `BT`, `JK`
+- make inferences work `SK`
+- fix errors with aiortc on nano `MK`
