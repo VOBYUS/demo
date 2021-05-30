@@ -32,11 +32,11 @@ This code is based on https://github.com/aiortc/aiortc.
 - fix github push issue, fix issues with class `SK`
 - work on docker `MK`
 
-### Action Items for class 5/29
+### Action Items for class 6/5
 - import blink.py into server.py `SK`
-- serve static files `BT`
-- download aiortc `MK`
-- work on formatting: change fonts in dropdown, delete (not divs) `JK`
+- try to serve all the static files`BT`
+- manually insert repo link to ffmpeg`MK`
+- continue on working on formatting`JK`
 
 ## Update for 5/15
 ### Accomplishment
