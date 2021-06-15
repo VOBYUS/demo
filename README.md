@@ -19,6 +19,25 @@ This code is based on https://github.com/aiortc/aiortc.
 - Need to solve cert issue with localhost
 - Ensure Jetson Nano is powerful enough
 
+## Update for 6/12
+
+## Next Class: 1-2:30 Friday, 6/18
+
+### Accomplishments
+-  tried to figure out how to get drowsiness value `SK`
+
+### Action Items During Class
+- clean up webpage, fix resolution error `JK`
+- figure out how to pass drowsiness values to web server `SK`
+- test jetson nano on phone`MK`
+- Review action items for ME Competition
+
+### Action Items for class 6/18
+- Figure out why drowsiness prediction is not sending the right data `SK` 
+- Work on ME Competition, undestand what's happening on Jetson Nano, phone communication `MK`
+- Fix the box placement and ME Competition`JK`
+
+
 ## Update for 5/29
 ### Accomplishments
 - Worked on formatting for the demo`JK`

@@ -2,7 +2,7 @@
 import tensorflow as tf
 import numpy as np
 
-tf.reset_default_graph()
+tf.compat.v1.reset_default_graph()
 imported_graph = tf.train.import_meta_graph('./my_model1.meta')
 sess = tf.Session()
 imported_graph.restore(sess, './my_model1')
