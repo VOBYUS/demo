@@ -19,6 +19,7 @@ This code is based on https://github.com/aiortc/aiortc.
 - Need to solve cert issue with localhost
 - Ensure Jetson Nano is powerful enough
 
+<<<<<<< HEAD
 ## Update for 6/12
 
 ## Next Class: 1-2:30 Friday, 6/18
@@ -37,12 +38,43 @@ This code is based on https://github.com/aiortc/aiortc.
 - Work on ME Competition, undestand what's happening on Jetson Nano, phone communication `MK`
 - Fix the box placement and ME Competition`JK`
 
+=======
+## Setting up the environment
+- Works in Python version 3.8.5
+- conda create -n NAMEOFPROJECT python=3.8.5
+- conda activate NAMEOFPROJECT
+- python --version
+- pip install -r requirements.txt
+
+
+download https://drive.google.com/file/d/1ZN2BVDyTQfU2IF2ov98iOwpMiG3Tj_cU/view?usp=sharing
+brew install scipy
+
+
+## Update for 6/5
+### Accomplishments
+- Continued working on demo formatting`JK`
+- Unable to serve static files `BT`
+- Successfully implemented drowsiness detection on webserver`SK`
+- Aiortc works on the Jetson Nano `MK`
+
+### Action Items During Class
+- organize files, formatting`JK`
+- serve static files `BT`
+- fix github push issue, fix issues with class `SK`
+- work on docker `MK`
+
+### Action Items for class 6/12
+- import blink.py into server.py `SK`
+- try to serve all the static files`BT`
+- manually insert repo link to ffmpeg`MK`
+>>>>>>> ba53dd40d27fd0b1cf4c5642ff260a96ebc05d6b
 
 ## Update for 5/29
 ### Accomplishments
 - Worked on formatting for the demo`JK`
 - tried to fix background image `BT`
-- created drowsiness detection class`SK'
+- created drowsiness detection class`SK`
 - tried getting docker to work `MK`
 
 ### Action Items During Class

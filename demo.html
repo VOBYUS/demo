@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href='https://www.voby.us/base.css' rel='stylesheet'>
+	<style>
+		body {
+			background-color: var(--primary-teal);
+			height:480px;
+			width:800px;
+			margin:0;
+			padding:0;
+			border:5px solid black;
+		}
+		#vid{
+			height:480px;
+			width:480px;
+			float:right;
+			background-color: white;
+		}
+		.right {
+			display: none;
+		}
+		#preview {
+			margin:15px;
+		}
+		#recording {
+			display: none;
+		}
+		#info {
+			text-align:center;
+			float:left;
+		}
+		#startButton {
+			width:200px;
+			margin:auto;
+			display:block;
+			margin-top: 140px;
+			margin-left: 300px;
+			background-color: var(--light-teal);
+			color:white;
+			height: 200px;
+			border-radius: 50%;
+			font-size: 20px;
+		}
+		.left-container {
+			margin: 22px;
+			height: 130px;
+			width: 250px;
+			/*width: calc(100vw- (100vh * 736/576));*/
+			outline: 5px white solid;
+		}
+		.left-container > .label {
+			height:110px;
+			width:20px;
+			font-size: 17px;
+			color: var(--primary-gold);
+			margin:1vw;
+			writing-mode: vertical-rl;
+			text-orientation: mixed;
+			outline: 5px var(--primary-gold) solid;
+			float:left;
+		}
+		.left-container > .descrip {
+			font-family:'Raleway', monospace;
+			font-size:38px;
+			margin:8vh 3px 10px 3px;
+			text-align: center;
+			color:white;
+			float:right;
+		}
+
+	</style>
+</head>
+
+<body onload="getTime()">
+	<button id="startButton"> Start Trip </button>
+	<div id="vid" style = "display:none">
+		<!--<a id="downloadButton" class="button">-->
+  <!--      Download-->
+  <!--      </a>-->
+        <video id="preview" width="450px" height="450px" autoplay muted></video>
+		<button id="stopButton"> Stop </button>
+	    <button id="resumeButton"> Resume </button>    	
+	</div>
+	
+	<div id="info" style = "display:none">
+		<div id="driverName"></div>
+		<div class="left-container">
+			<div class="label">Time</div>
+			<div class="descrip" id="time"></div>	
+		</div>
+		<div class="left-container">
+			<div class="label">Time Elapsed</div>
+			<div class="descrip" class="stopwatch" id="timeElapsed"></div>
+		</div>
+		<div class="left-container">
+			<div class="label">Drowsiness</div>
+			<div class="descrip"></div>
+		</div>
+	</div>
+	
+
+    <div class="right">
+        <h2>Recording</h2>
+    </div>
+	<script src = '/libs/face-api.js'> </script>
+  <script>
+    let preview = document.getElementById("preview");
+    let recording = document.getElementById("recording");
+    let startButton = document.getElementById("startButton");
+    let stopButton = document.getElementById("stopButton");
+    let resumeButton = document.getElementById("resumeButton");
+    // let stopButton = document.getElementById("stopButton");
+    let downloadButton = document.getElementById("downloadButton");
+    let logElement = document.getElementById("log");
+
+    let recordingTimeMS = 3000;
+
+
+    function log(msg) {
+        //logElement.innerHTML += msg + "\n";
+    }
+
+    function wait(delayInMS) {
+        return new Promise(resolve => setTimeout(resolve, delayInMS));
+    }
+
+    // function startRecording(stream, lengthInMS) {
+    //     let recorder = new MediaRecorder(stream);
+    //     let data = [];
+
+    //     recorder.ondataavailable = event => data.push(event.data);
+    //     recorder.start();
+    //     log(recorder.state + " for " + (lengthInMS/1000) + " seconds...");
+
+    //     let stopped = new Promise((resolve, reject) => {
+    //     recorder.onstop = resolve;
+    //     recorder.onerror = event => reject(event.name);
+    //     });
+
+    //     let recorded = wait(lengthInMS).then(
+    //     () => recorder.state == "recording" && recorder.stop()
+    //     );
+
+    //     return Promise.all([
+    //         stopped,
+    //         recorded
+    //     ])
+    //     .then(() => data);
+    // }
+
+    // function stop(stream) {
+    //     stream.getTracks().forEach(track => track.stop());
+    // }
+
+    // startButton.addEventListener("click", function() {
+    //     navigator.mediaDevices.getUserMedia({
+    //         video: true,
+    //         audio: false
+    //     }).then(stream => {
+    //             preview.srcObject = stream;
+    //             downloadButton.href = stream;
+    //             preview.captureStream = preview.captureStream || preview.mozCaptureStream;
+    //             return new Promise(resolve => preview.onplaying = resolve);
+    //           }).then(() => startRecording(preview.captureStream(), recordingTimeMS))
+    //           .then (recordedChunks => {
+    //             let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
+    //             recording.src = URL.createObjectURL(recordedBlob);  
+    //             downloadButton.href = recording.src;
+    //             downloadButton.download = "RecordedVideo.webm";
+
+    //             log("Successfully recorded " + recordedBlob.size + " bytes of " +
+    //                 recordedBlob.type + " media.");
+    //           })
+    //           .catch(log);
+    //     }, false);
+
+
+        // stopButton.addEventListener("click", function() {
+        // stop(preview.srcObject);
+        // }, false);
+
+    </script>
+    
+    <script>
+    	var k = 0;
+    	var startTime = new Date();
+    
+    	function getTime() {
+			var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			var s = today.getSeconds();
+			var hElapsed = today.getHours() - startTime.getHours();
+			var mElapsed = today.getMinutes() - startTime.getMinutes();
+			var sElapsed = today.getSeconds() - startTime.getSeconds();
+			m = checkTime(m);
+			s = checkTime(s);
+			mElapsed = checkTime(m);
+			sElapsed = checkTime(s);
+			document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+			//document.getElementById('timeElapsed').innerHTML = hElapsed + ":" + mElapsed + ":" + sElapsed;
+			var t = setTimeout(getTime, 500);
+		}
+		function checkTime(i) {
+			if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
+		}
+    </script>
+    <script>
+    	var Stopwatch = function(elem, options) {
+
+	  var timer       = createTimer(),
+      offset,
+      clock,
+      interval;
+
+	  // default options
+	  options = options || {};
+	  options.delay = options.delay || 1;
+	
+	  // append elements     
+	  elem.appendChild(timer);
+	
+	  // initialize
+	  reset();
+	
+	  // private functions
+	  function createTimer() {
+	    return document.createElement("span");
+	  }
+	
+	  function createButton(action, handler) {
+	    var a = document.createElement("a");
+	    a.href = "#" + action;
+	    a.innerHTML = action;
+	    a.addEventListener("click", function(event) {
+	      handler();
+	      event.preventDefault();
+	    });
+	    return a;
+	  }
+	
+	  function start() {
+	    if (!interval) {
+	      offset   = Date.now();
+	      interval = setInterval(update, options.delay);
+	    }
+	  }
+	
+	  function stop() {
+	    if (interval) {
+	      clearInterval(interval);
+	      interval = null;
+	    }
+	  }
+	
+	  function reset() {
+	    clock = 0;
+	    render();
+	  }
+	
+	  function update() {
+	    clock += delta();
+	    render();
+	  }
+	
+	  function render() {
+	    timer.innerHTML = clock/1000; 
+	  }
+	
+	  function delta() {
+	    var now = Date.now(),
+	        d   = now - offset;
+	
+	    offset = now;
+	    return d;
+	  }
+	
+	  // public API
+	  this.start  = start;
+	  this.stop   = stop;
+	  this.reset  = reset;
+	};
+	
+	var elems = document.getElementsByClassName("stopwatch");
+
+	for (var i=0, len=elems.length; i<len; i++) {
+	  new Stopwatch(elems[i]);
+	}
+	var elem = document.getElementById("timeElapsed");
+	var timer = new Stopwatch(elem, {delay: 10});
+	
+
+	// timer.stop();
+	// timer.reset();
+    </script>
+    
+    <script>
+    var focusedFaceWidth = 0;
+    var focusedFaceHeight = 0;
+    var focusedFaceRatio = 1.4;
+    
+   	var video  = document.getElementById('preview');
+    var constraints = {
+				audio: false,
+				video: {
+					width: {
+				      min: 480,
+				      ideal: 480,
+				      max: 480,
+				    },
+				    height: {
+				      min: 480,
+				      ideal: 480,
+				      max: 480,
+				    },
+				facingMode: 'user'
+			}
+		};
+		
+     async function loadModel(modelName) {
+		// div.innerHTML = '' + modelName;
+		await faceapi.nets[modelName].loadFromUri('/libs/models');
+		// div.innerHTML = '';
+	}
+	
+	function setupVideo() {
+		timer.start();
+		document.getElementById("vid").style.display = "block";
+		document.getElementById("startButton").style.display = "none";
+		document.getElementById("info").style.display = "block";
+		navigator
+		.mediaDevices
+		.getUserMedia(constraints)
+		.then(loadVideo)
+		.catch(handleNoCamera)
+	}
+	
+	function loadVideo(mediaStream) {
+				video.srcObject = mediaStream; 
+				video.onloadedmetadata = playVideo;
+			}
+			
+	async function playVideo() {
+			video.play();
+			
+				await loadModel('ssdMobilenetv1');
+				await loadModel('tinyFaceDetector');
+				await loadModel('mtcnn');
+				await loadModel('faceLandmark68Net');
+				await loadModel('faceLandmark68TinyNet');
+				await loadModel('faceRecognitionNet');
+	
+				displaySize = {
+					width: video.videoWidth,
+					height: video.videoHeight,
+				}
+				//faceapi.matchDimensions(video, displaySize);
+				analyze();
+		//		readLandmarkFile();
+				
+		}
+		
+	function handleNoCamera(error) {
+		alert(error.message);
+		}
+
+	var holdsData = {};
+	var results;
+	var faces;
+	var flag = 0;
+  
+	function loadLocalStorage() {
+		var descriptors = {};
+		var labeledDescriptors = [];
+		var nameList = [];
+		
+		for (var i = 0; i < localStorage.length; i++ ) { //loop through each item in localStorage
+			var key = localStorage.key(i) //gets the key of whichever item
+			var name = key.split("#")[1];
+			if(!nameList.includes(name) && name) {
+				nameList.push(name);
+				descriptors[name] = [];
+			}
+		} //gets a list of all names
+		
+		if(Object.keys(descriptors).length === 0) alert("Please register your face");
+		for (var i = 0; i < nameList.length; i++) {
+			// GET THE NAME FROM THE NAMELIST(fr#jiminn#angle)
+			/* TODO: name = ... */
+			name = nameList[i];
+			
+			for( var j = 0; j < localStorage.length; j++) {
+				// GET THE KEY FOR THE jth item in localStorage  (fr#jiminn#angle)
+				/* TODO: key = ... */
+				key = localStorage.key(j);
+				
+				// IF THE KEY IS FOR A DIFFERENT NAME, exit the function
+				/* TODO */
+				if (key.includes("#" + name + "#") === false) {
+					continue;
+				}
+				
+				//getting value from the key and storing in variable
+				var x = localStorage.getItem(key); 
+				
+				//if holdsData is empty, continue
+				if(!x) continue; 
+				
+				//converts x into a dictionary
+				x=JSON.parse(x); 
+				
+				//creates Float32Array descriptor
+				var descriptor = new Float32Array(128); 
+				
+				//loop through all keys and set descriptor to their corresponding values
+				Object.keys(x).forEach(k=>descriptor[k]=x[k]); 
+				
+				//add descriptor to descriptors
+				descriptors[name].push(descriptor); 
+			} 
+			//collect all names, then make descriptors, then push to labeled Descriptors (ONCE PER NAME)
+			labeledDescriptors.push(new faceapi.LabeledFaceDescriptors(name, descriptors[name]));	
+		} 
+		faceMatcher = new faceapi.FaceMatcher(labeledDescriptors);
+		console.log(faceMatcher);
+		
+		//var faceMatch = faceMatcher.findBestMatch(results.descriptor);
+		//console.log(faceMatch);
+	}
+	
+	
+	async function analyze() {
+		// if(frameCount % 10 === 0) {
+			results = await faceapi
+				.detectSingleFace(video)
+		 		.withFaceLandmarks()
+		 		.withFaceDescriptor();
+			
+			if(results) {
+				var faceMatch = faceMatcher.findBestMatch(results.descriptor);
+				console.log(faceMatch);				
+				
+				var faceWidth = Math.abs(results.landmarks.positions[0].x - results.landmarks.positions[16].x)
+				var faceHeight = Math.abs(results.landmarks.positions[27].y - results.landmarks.positions[8].y)
+				var faceRatio = faceWidth/faceHeight;
+				
+				if(faceRatio * 1.2 < focusedFaceRatio || faceRatio > focusedFaceRatio * 1.2) {
+					console.log(faceRatio);
+					console.log("look at the road");
+					document.body.style.backgroundColor = "red";
+				}
+				else
+					document.body.style.backgroundColor = "var(--primary-teal)";
+
+				//faces.push(results.landmarks);
+				if (flag == 0) {
+					var user = confirm("Are you " + faceMatch.label + "?");
+					if (user == 1) {
+						flag = 1;
+						alert("Welcome back " + faceMatch.label + ". Have a safe trip!");
+					}
+					if (user == 0) {
+						prompt("Please visit the face-ID registration page here: https://www.voby.us/facedectection/facedetectionui.html")
+						flag = 1;
+					}
+					else {
+					}
+				}
+					//document.getElementById("demo").innerHTML = 
+				document.getElementById("driverName").innerHTML = faceMatch.label;
+			} 
+		//}	
+	
+		
+	//	++frameCount;
+		window.requestAnimationFrame(analyze);
+	}
+			
+	function stopVideo() {
+		video.pause();
+	}
+	function resumeVideo() {
+		video.play();
+	}
+	
+	
+	startButton.addEventListener('click', setupVideo);
+	stopButton.addEventListener('click', stopVideo);
+	//pauseButton.addEventListener('click', pauseVideo);
+	resumeButton.addEventListener('click', resumeVideo);
+
+	loadLocalStorage();
+    </script>
+</body>
+</html>
