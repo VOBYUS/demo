@@ -19,6 +19,25 @@ This code is based on https://github.com/aiortc/aiortc.
 - Need to solve cert issue with localhost
 - Ensure Jetson Nano is powerful enough
 
+## Update for 6/28
+
+### Accomplishments
+-  tried using plotly to make graphs `SK`
+-  worked on ME/GoFundMe started `JK`
+-  worked on ME `MK`
+
+### Action Items During Class
+- make graph `JK`
+- make graph `SK`
+- make graph `MK`
+
+### Action Items for class 6/26
+- try creating dictionary, ME, Buy me a Coffee `SK` 
+- ME script, Kickstarter `MK`
+- finish GoFundMe paragraph, ME`JK`  
+- for demo: graph, sound effect, links to fundraiser
+- *in video: show REAL progress, give illusion that you're pretty much there with the technology
+
 ## Update for 6/18
 
 ### Accomplishments
@@ -35,7 +54,7 @@ This code is based on https://github.com/aiortc/aiortc.
 ### Action Items for class 6/26
 - try making the graph for number of blinks and respond to Mr. Jerrick Hoang `SK` 
 - Continue working on the ME compeition and videos `MK`
-- Work on ME competitions and videos`JK`wfewfeewfweef       
+- Work on ME competitions and videos`JK`     
 
 
 ## Update for 6/12
