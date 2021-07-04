@@ -19,6 +19,21 @@ This code is based on https://github.com/aiortc/aiortc.
 - Need to solve cert issue with localhost
 - Ensure Jetson Nano is powerful enough
 
+## Update for 7/3
+
+### Accomplishments
+-  tried creating dictionary, created Buy Me a Coffee page`SK`
+-  wrote GoFundMe paragraph, ME video `JK`
+-  shortened competitor analysis part in script, kickstarter`MK`
+
+### Action Items During Class
+-  create graph in demo, data visualization`JK` `SK` `MK`
+
+### Action Items for class 7/10
+-  create graph in demo`SK` `JK` 
+-  get aiortc to run on computer using docker`MK`
+- for demo: graph, sound effect, links to fundraiser
+- *in video: show REAL progress, give illusion that you're pretty much there with the technology
 ## Update for 6/28
 
 ### Accomplishments
