@@ -19,6 +19,22 @@ This code is based on https://github.com/aiortc/aiortc.
 - Need to solve cert issue with localhost
 - Ensure Jetson Nano is powerful enough
 
+## Update for 7/10
+
+### Accomplishments
+-  ME Competition - finish promo video script, part of roadshow`SK` `JK` `MK`
+
+### Action Items During Class
+-  look at questions for ME Competition, continue making graph on demo`JK` `SK` `MK`
+
+### Action Items for class 7/10
+-  create graph in demo`SK` `JK` 
+-  get aiortc to run on computer using`MK`
+- for demo: graph, sound effect, links to fundraiser
+- *in video: show REAL progress, give illusion that you're pretty much there with the technology
+
+
+
 ## Update for 7/3
 
 ### Accomplishments
@@ -31,7 +47,7 @@ This code is based on https://github.com/aiortc/aiortc.
 
 ### Action Items for class 7/10
 -  create graph in demo`SK` `JK` 
--  get aiortc to run on computer using docker`MK`
+-  get aiortc to run on computer using`MK`
 - for demo: graph, sound effect, links to fundraiser
 - *in video: show REAL progress, give illusion that you're pretty much there with the technology
 ## Update for 6/28
