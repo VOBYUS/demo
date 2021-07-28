@@ -19,8 +19,26 @@ This code is based on https://github.com/aiortc/aiortc.
 - Need to solve cert issue with localhost
 - Ensure Jetson Nano is powerful enough
 
-## Update for 7/3
+## Update for 7/27
+### Accomplishments
+- ME win !!
+- finished single-bar chart + emojis 
 
+### Meeting Mr. Hoang demo TODOs
+- host on the cloud and not sunny's computer
+- make it be able to have several people use it at the same time
+- raise accuracy as much as possible
+- finish Readme on aiortc (how to train your own model)
+
+### Action Items During Class
+- get image working to host on cloud
+
+
+### Action Items for class 8/3
+- do 30min of face recording `SK`
+- write up Readme on how to train your own model (milestone ln 31)`SK`
+
+## Update for 7/3
 ### Accomplishments
 -  tried creating dictionary, created Buy Me a Coffee page`SK`
 -  wrote GoFundMe paragraph, ME video `JK`
@@ -34,6 +52,8 @@ This code is based on https://github.com/aiortc/aiortc.
 -  get aiortc to run on computer using docker`MK`
 - for demo: graph, sound effect, links to fundraiser
 - *in video: show REAL progress, give illusion that you're pretty much there with the technology
+
+
 ## Update for 6/28
 
 ### Accomplishments
