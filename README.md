@@ -29,12 +29,13 @@ This code is based on https://github.com/aiortc/aiortc.
 - make it be able to have several people use it at the same time
 - raise accuracy as much as possible
 - finish Readme on aiortc (how to train your own model)
+- clean up folder
 
 ### Action Items During Class
 - get image working to host on cloud
 
 
-### Action Items for class 8/3
+### Action Items for next class 8/3
 - do 30min of face recording `SK`
 - write up Readme on how to train your own model (milestone ln 31)`SK`
 
